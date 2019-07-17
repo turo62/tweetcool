@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.codecool.web.model.Tweet" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 
@@ -13,11 +14,9 @@
 </head>
 
 <body>
-
 <ul class="navbar">
-    <li><a href="index.jsp">Home page</a></li>
-    <li><a href="list.html">List sorted tweets</a></li>
-    <li><a href="listall.html">List all recent tweets</a></li>
+    <li><a href="index">Home page</a></li>
+    <li><a href="list?offset=0&limit=0&from=2019-07-06">List sorted tweets</a></li>
 </ul>
 
 <div class="main">
@@ -29,6 +28,18 @@
             Your tweet: <br><textarea class = "content" name = "content"></textarea><br>
             <input type = "submit" value = "Submit" />
         </form>
+
+        <h2>Tweet list</h2>
+        <% List<Tweet> tweets = new ArrayList<>(); %>
+        <% if (request.getAttribute("tweets") != null) { %>
+            <% tweets.addAll((List<Tweet>)request.getAttribute("tweets")); %>
+        <% } %>
+        <% if (tweets.size() > 0) { %>
+            <% for (Tweet tweet : tweets) { %>
+            <p><i><%= tweet.getDate() %><br>
+            <%= tweet.getPoster() %></i>: <%= tweet.getContent() %></p>
+            <% } %>
+        <% } %>
     </div>
 </div>
 </body>

@@ -5,7 +5,7 @@ import java.util.Date;
 public final class Tweet {
     private String poster;
     private String content;
-    private Date date;
+    private Date date = new Date();
     
     public Tweet(String poster, String content) {
         this.poster = poster;
@@ -22,10 +22,5 @@ public final class Tweet {
     
     public Date getDate() {
         return date;
-    }
-    
-    @Override
-    public String toString() {
-        return String.format("%s: \n\n %20s",poster, content);
     }
 }

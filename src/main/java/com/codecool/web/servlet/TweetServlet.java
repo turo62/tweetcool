@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("")
+@WebServlet({"", "/index"})
 public class TweetServlet extends HttpServlet {
     
     private final TweetService myService = TweetService.getInstance();
@@ -23,6 +23,8 @@ public class TweetServlet extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String poster = req.getParameter("poster");
+        String content = req.getParameter("content");
         myService.addTweet(new Tweet(req.getParameter("poster"), req.getParameter("content")));
         doGet(req, resp);
     }
