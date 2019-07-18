@@ -2,17 +2,15 @@ package com.codecool.web.service;
 
 import com.codecool.web.model.Tweet;
 
-import java.text.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 public class TweetService {
-    private static int DEFAULTLIMIT = 20;
+    
     private List<Tweet> tweets;
     private static TweetService myInstance = new TweetService();
-    private DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
     
     private TweetService() {
         tweets = new ArrayList<>(Arrays.asList(
